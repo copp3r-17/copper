@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For Someone Special ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 70px;
+      font-size: 40px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    /* Teddy section */
+    #teddySection {
+      margin-top: 110px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .teddy {
+      font-size: 100px;
+      cursor: pointer;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+    .teddy:hover {
+      transform: scale(1.2);
+    }
+
+    .hint {
+      font-size: 20px;
+      margin-top: 10px;
+      opacity: 0.95;
+      animation: blink 1.5s infinite;
+    }
+
+    /* Hearts section */
+    #heartsSection {
+      display: none;
+      margin-top: 40px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .subtext {
+      font-size: 20px;
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+
+    .diamond {
+      display: grid;
+      grid-template-columns: 90px 90px 90px;
+      grid-template-rows: 90px 90px 90px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 0 auto;
+      width: fit-content;
+    }
+
+    .heartBtn {
+      font-size: 55px;
+      cursor: pointer;
+      transition: 0.25s;
+      user-select: none;
+      filter: drop-shadow(0px 6px 12px rgba(0,0,0,0.25));
+    }
+
+    .heartBtn:hover {
+      transform: scale(1.25);
+    }
+
+    .clicked {
+      opacity: 0.85;
+      transform: scale(1.05);
+      filter: drop-shadow(0px 10px 18px rgba(0,0,0,0.35));
+    }
+
+    /* Place hearts in diamond positions */
+    #h1 { grid-column: 2; grid-row: 1; }
+    #h2 { grid-column: 1; grid-row: 2; }
+    #h3 { grid-column: 3; grid-row: 2; }
+    #h4 { grid-column: 2; grid-row: 3; }
+
+    /* Message box below hearts */
+    #smallMessage {
+      margin-top: 25px;
+      font-size: 22px;
+      min-height: 60px;
+      padding: 0 18px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    #smallMessage.show {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
+    /* Final surprise */
+    #finalSurprise {
+      display: none;
+      margin-top: 35px;
+      animation: fadeIn 1.8s ease-in-out;
+      padding-bottom: 60px;
+    }
+
+    img {
+      width: 270px;
+      border-radius: 20px;
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.35);
+    }
+
+    .finalText {
+      margin-top: 18px;
+      font-size: 22px;
+      padding: 0 20px;
+      line-height: 1.65;
+    }
+
+    /* Floating hearts background */
+    .heartFloat {
+      position: fixed;
+      bottom: -10px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-900px); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0px); }
+    }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Hey Pieee❤️</h1>
+
+  <!-- Teddy -->
+  <div id="teddySection">
+    <div class="teddy" onclick="showHearts()">🧸</div>
+    <div class="hint">Click the teddy 🥺💖</div>
+  </div>
+
+  <!-- Hearts (diamond) -->
+  <div id="heartsSection">
+    <div class="subtext">Now click the 4 hearts one by one 💎❤️</div>
+
+    <div class="diamond">
+      <div id="h1" class="heartBtn" onclick="heartClick(1)">❤️</div>
+      <div id="h2" class="heartBtn" onclick="heartClick(2)">❤️</div>
+      <div id="h3" class="heartBtn" onclick="heartClick(3)">❤️</div>
+      <div id="h4" class="heartBtn" onclick="heartClick(4)">❤️</div>
+    </div>
+
+    <div id="smallMessage"></div>
+  </div>
+
+  <!-- Final surprise -->
+  <div id="finalSurprise">
+    <img src="My Photo.jpeg" alt="Our Photo">
+    <div class="finalText">
+    Piee, I miss you so much. I miss you in every moment.
+    Even though I’m far away right now, my heart still feels closest to you.
+
+    The past few days weren’t easy, but I’m proud of us — we didn’t give up. We chose to understand each other and handle everything together.
+    That means more to me than any perfect moment ever could.
+
+    No matter the distance, I’m always there with you ❤️
+    Distance, arguments, tough days — nothing changes how much you mean to me. I’m not going anywhere ❤️<br><br>
+      Happy Valentine’s Day 🌹✨
+    </div>
+  </div>
+
+  <script>
+    // 🔐 PASSWORD PROTECTION (change "Piee1709" to your secret code)
+    const password = prompt("Enter our secret code 💖");
+    if (password !== "Piee1709") {
+      document.body.innerHTML = "<h1 style='margin-top:120px;'>Access Denied ❤️</h1>";
+      throw new Error("Wrong password");
+    }
+
+    function showHearts() {
+      document.getElementById("teddySection").style.display = "none";
+      document.getElementById("heartsSection").style.display = "block";
+    }
+
+    let clicked = new Set();
+
+    const messages = {
+      1: "I'm Missing U 🥰",
+      2: "Missing your lips, hugs, ur touch 🥹 ",
+      3: "Your smile is my favorite view ✨",
+      4: "Okay… now see something special for you 🥺❤️"
+    };
+
+    function heartClick(n) {
+      // Prevent double counting
+      if (clicked.has(n)) return;
+
+      clicked.add(n);
+      document.getElementById("h" + n).classList.add("clicked");
+
+      const box = document.getElementById("smallMessage");
+      box.classList.remove("show");
+      // small reflow for animation restart
+      void box.offsetWidth;
+      box.innerHTML = messages[n];
+      box.classList.add("show");
+
+      // When all 4 clicked, show final
+      if (clicked.size === 4) {
+        setTimeout(() => {
+          document.getElementById("finalSurprise").style.display = "block";
+          // optional: scroll a bit so she sees the photo
+          document.getElementById("finalSurprise").scrollIntoView({ behavior: "smooth" });
+        }, 900);
+      }
+    }
+
+    // Floating hearts background
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heartFloat");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 650);
+  </script>
+
+</body>
+</html>

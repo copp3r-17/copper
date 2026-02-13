@@ -33,9 +33,7 @@
       user-select: none;
     }
 
-    .teddy:hover {
-      transform: scale(1.2);
-    }
+    .teddy:hover { transform: scale(1.2); }
 
     .hint {
       font-size: 20px;
@@ -76,9 +74,7 @@
       filter: drop-shadow(0px 6px 12px rgba(0,0,0,0.25));
     }
 
-    .heartBtn:hover {
-      transform: scale(1.25);
-    }
+    .heartBtn:hover { transform: scale(1.25); }
 
     .clicked {
       opacity: 0.85;
@@ -86,13 +82,13 @@
       filter: drop-shadow(0px 10px 18px rgba(0,0,0,0.35));
     }
 
-    /* Place hearts in diamond positions */
+    /* Diamond positions */
     #h1 { grid-column: 2; grid-row: 1; }
     #h2 { grid-column: 1; grid-row: 2; }
     #h3 { grid-column: 3; grid-row: 2; }
     #h4 { grid-column: 2; grid-row: 3; }
 
-    /* Message box below hearts */
+    /* Small message box */
     #smallMessage {
       margin-top: 25px;
       font-size: 22px;
@@ -158,7 +154,7 @@
 
 <body>
 
-  <h1>Hey Pieee❤️</h1>
+  <h1>Hey Piee ❤️</h1>
 
   <!-- Teddy -->
   <div id="teddySection">
@@ -182,9 +178,10 @@
 
   <!-- Final surprise -->
   <div id="finalSurprise">
+    <!-- IMPORTANT: set this to your real uploaded filename (exact match) -->
     <img src="My Photo.jpeg" alt="Our Photo">
     <div class="finalText">
-    Piee, I miss you so much. I miss you in every moment.
+      Piee, I miss you so much. I miss you in every moment.
     Even though I’m far away right now, my heart still feels closest to you.
 
     The past few days weren’t easy, but I’m proud of us — we didn’t give up. We chose to understand each other and handle everything together.
@@ -197,12 +194,24 @@
   </div>
 
   <script>
-    // 🔐 PASSWORD PROTECTION (change "Piee1709" to your secret code)
+    // 🔐 PASSWORD (change "Piee1709" to your secret code)
     const password = prompt("Enter our secret code 💖");
     if (password !== "Piee1709") {
       document.body.innerHTML = "<h1 style='margin-top:120px;'>Access Denied ❤️</h1>";
       throw new Error("Wrong password");
     }
+
+    // 🔔 NOTIFICATION (Formspree) — replace with your real Formspree URL
+    // Example: https://formspree.io/f/xabc1234
+    fetch("https://formspree.io/f/mlgwjyav", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: "Someone opened the Valentine page ❤️ (correct password entered)"
+      })
+    }).catch(() => {
+      // ignore errors silently
+    });
 
     function showHearts() {
       document.getElementById("teddySection").style.display = "none";
@@ -219,7 +228,6 @@
     };
 
     function heartClick(n) {
-      // Prevent double counting
       if (clicked.has(n)) return;
 
       clicked.add(n);
@@ -227,16 +235,13 @@
 
       const box = document.getElementById("smallMessage");
       box.classList.remove("show");
-      // small reflow for animation restart
       void box.offsetWidth;
       box.innerHTML = messages[n];
       box.classList.add("show");
 
-      // When all 4 clicked, show final
       if (clicked.size === 4) {
         setTimeout(() => {
           document.getElementById("finalSurprise").style.display = "block";
-          // optional: scroll a bit so she sees the photo
           document.getElementById("finalSurprise").scrollIntoView({ behavior: "smooth" });
         }, 900);
       }
